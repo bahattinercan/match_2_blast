@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
-        Screen.SetResolution(562, 1000, false);
+        //Screen.SetResolution(562, 1000, false);
     }
 
     public void LoadData(GameData data)
