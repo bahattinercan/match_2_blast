@@ -35,4 +35,9 @@ public class GameLogic : MonoBehaviour
 			Debug.Log("An unexpected error has occurred. " + exception);
 		}
 	}
+
+	public void SetInteract(bool canInteract)
+    {
+		this.canInteract = canInteract;
+    }
 }
