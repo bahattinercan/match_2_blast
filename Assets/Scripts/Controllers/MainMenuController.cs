@@ -7,6 +7,11 @@ public class MainMenuController : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI healthText, coinText;
     private int levelIndex;
 
+    private void Awake()
+    {
+        //Screen.SetResolution(562, 1000, false);
+    }
+
     public void LoadData(GameData data)
     {
         healthText.text = data.health.ToString();
