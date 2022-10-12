@@ -40,4 +40,25 @@ public class Shuffler
             array[sr, sc] = temp;
         }
     }
+
+    /*
+        int[,] array = new int[5, 7];
+        int w = array.GetUpperBound(1) + 1;
+        // Fill array with 0, 1, 2, ... , 5*7-1
+
+        for (int i = 0; i < array.Length; ++i)
+        {
+            int sr = i / w;
+            int sc = i % w;
+
+            array[sr, sc] = i;
+        }
+
+        var shuffler = new Shuffler();
+        shuffler.Shuffle(array);
+        foreach (var item in array)
+        {
+            Debug.Log(item);
+        }
+     */
 }

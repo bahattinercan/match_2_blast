@@ -23,28 +23,6 @@ public class GameManager : MonoBehaviour
             maxScore += (quest.targetNumber * level.scoreMultiplier);
         }
         maxScore *= 2;
-
-        // for testing
-        /*
-        int[,] array = new int[5, 7];
-        int w = array.GetUpperBound(1) + 1;
-        // Fill array with 0, 1, 2, ... , 5*7-1
-
-        for (int i = 0; i < array.Length; ++i)
-        {
-            int sr = i / w;
-            int sc = i % w;
-
-            array[sr, sc] = i;
-        }
-
-        var shuffler = new Shuffler();
-        shuffler.Shuffle(array);
-        foreach (var item in array)
-        {
-            Debug.Log(item);
-        }
-        */
     }
 
     public void DecreaseMove()
@@ -67,6 +45,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < level.quests.Count; i++)
         {
             Quest quest = level.quests[i];
+            Vector3 vfxSpawnPos = new Vector3(block.GetTransform.x, block.GetTransform.y,5);
+            Instantiate(GameAssets.instance.destroyVFX, vfxSpawnPos, Quaternion.identity);
             if (block.blockType == quest.blockType)
             {
                 level.quests[i].targetNumber--;
@@ -108,7 +88,7 @@ public class GameManager : MonoBehaviour
         gameLogic.canInteract = false;
         UIManager.instance.endGamePanel.gameObject.SetActive(true);
         UIManager.instance.endGamePanel.SetupPanel(completedQuests, score, coin, win);
-        if (win) 
+        if (win)
             AudioManager.instance.PlaySFX(EUISoundType.win, false);
         else
             AudioManager.instance.PlaySFX(EUISoundType.lose, false);

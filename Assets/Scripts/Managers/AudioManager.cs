@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public enum EGameSoundType
@@ -41,29 +42,35 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource[] gameSounds;
     [SerializeField] private AudioSource[] uiSounds;
     private AudioSource musicAudioSource;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
         musicAudioSource = GetComponent<AudioSource>();
-        MusicVolumeChanged(PlayerPrefs.GetFloat(EPlayerPrefs.musicVolume.ToString()));
-        //audioSource.Play();
-        SFXVolumeChanged(PlayerPrefs.GetFloat(EPlayerPrefs.sfxVolume.ToString()));
+        musicAudioSource.Play();
     }
 
     public void MusicVolumeChanged(float volume)
     {
         musicVolume = volume;
         musicAudioSource.volume = volume;
+        PlayerPrefs.SetFloat(EPlayerPrefs.musicVolume.ToString(), musicVolume);
     }
 
     public void SFXVolumeChanged(float volume)
     {
         sfxVolume = volume;
+        PlayerPrefs.SetFloat(EPlayerPrefs.sfxVolume.ToString(), sfxVolume);
         foreach (AudioSource audioSource in gameSounds)
         {
             audioSource.volume = volume;
@@ -91,5 +98,4 @@ public class AudioManager : MonoBehaviour
         else
             gameSounds[(int)soundType].pitch = 1;
     }
-    
 }

@@ -12,7 +12,7 @@ public class GameAssets : MonoBehaviour
     public Sprite bombSprite;
     public Sprite colorBombSprite;
     public GameObject questPanel;
-
+    public GameObject destroyVFX;
 
     private void Awake()
     {

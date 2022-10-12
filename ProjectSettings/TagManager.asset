@@ -45,3 +45,6 @@ TagManager:
   - name: Tile
     uniqueID: 1110335383
     locked: 0
+  - name: VFX
+    uniqueID: 349000099
+    locked: 0

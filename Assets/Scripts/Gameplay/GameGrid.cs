@@ -10,7 +10,7 @@ public class GameGrid : MonoBehaviour
     private List<List<IBlock>> Columns = new List<List<IBlock>>();
     [SerializeField] private GameObject Square;
     [SerializeField] private GameObject BlackBomb;
-
+    private Shuffler shuffler;
     private const float CheckForSpriteTypesDelay = .05f;
     public int Height { get => height; set => height = value; }
     public int Width { get => width; set => width = value; }
@@ -39,22 +39,34 @@ public class GameGrid : MonoBehaviour
     private void Start()
     {
         Invoke("CheckForSpriteTypes", CheckForSpriteTypesDelay*2);
+        shuffler = new Shuffler();
     }
 
     public void CheckForSpriteTypes()
     {
         List<IBlock> blocks = new List<IBlock>();
+        int sameTypeBlocks = 0;
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
                 if (Columns[i][j] != null &&!blocks.Contains(Columns[i][j]))
                 {
-                    blocks.AddRange(Columns[i][j].CheckOtherTiles(this));
+                    List<IBlock> tempList = Columns[i][j].CheckOtherTiles(this);
+                    blocks.AddRange(tempList);
+                    // check same type neighbor numbers
+                    if (tempList.Count > 1)
+                    {
+                        sameTypeBlocks += tempList.Count;
+                    }
                     Columns[i][j].CheckOtherTiles(this);
                 }
             }
         }
+        if (sameTypeBlocks == 0)
+        {
+            shuffler.Shuffle(Columns);
+        }        
     }
 
     private void OnDrawGizmos()
@@ -149,12 +161,5 @@ public class GameGrid : MonoBehaviour
                 surrounding.Add(this.Columns[position.x][position.y]);
 
         return surrounding;
-    }
-
-    private IBlock RandomizeBlock()
-    {
-        var blocks = new List<IBlock>();
-        blocks.Add(Square.GetComponent<IBlock>());
-        return blocks[Random.Range(0, blocks.Count)];
     }
 }

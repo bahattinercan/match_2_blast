@@ -16,9 +16,9 @@ MonoBehaviour:
   height: 12
   quests:
   - targetNumber: 10
-    blockType: 2
-  - targetNumber: 30
     blockType: 3
+  - targetNumber: 30
+    blockType: 4
   - targetNumber: 15
     blockType: 5
   maxMove: 40

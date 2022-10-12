@@ -20,7 +20,7 @@ MonoBehaviour:
   - targetNumber: 20
     blockType: 2
   - targetNumber: 10
-    blockType: 1
+    blockType: 4
   maxMove: 30
   maxBlockType: 5
   scoreMultiplier: 5

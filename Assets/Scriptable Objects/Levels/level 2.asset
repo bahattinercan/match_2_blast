@@ -17,9 +17,9 @@ MonoBehaviour:
   quests:
   - targetNumber: 10
     blockType: 0
-  - targetNumber: 3
+  - targetNumber: 6
     blockType: 2
-  - targetNumber: 3
+  - targetNumber: 6
     blockType: 1
   maxMove: 12
   maxBlockType: 5
