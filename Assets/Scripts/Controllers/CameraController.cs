@@ -13,7 +13,6 @@ public class CameraController : MonoBehaviour
 
     private void ViewSetup()
     {
-        
         float neededXMove = (gameGrid.Width - 6) / 2f;
         float neededYMove = 0;
         if (gameGrid.Height < 6)
